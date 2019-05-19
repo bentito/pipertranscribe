@@ -1,7 +1,9 @@
 package com.clearcaptions.pipertranscribe;
 
+import software.amazon.awssdk.auth.credentials.DefaultCredentialsProvider;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.transcribestreaming.model.LanguageCode;
+import software.amazon.awssdk.services.transcribestreaming.model.MediaEncoding;
 import software.amazon.awssdk.services.transcribestreaming.model.StartStreamTranscriptionRequest;
 
 import javax.sound.sampled.LineUnavailableException;
@@ -32,17 +34,17 @@ import java.util.concurrent.ExecutionException;
 
 public class App {
     private static final String endpoint = "endpoint";
-    private static final Region region = region;
+    private static final Region region = Region.of(Region.US_WEST_2.id());
     public static void main(String args[]) throws URISyntaxException, ExecutionException, InterruptedException, LineUnavailableException, FileNotFoundException {
         /**
          * Create Transcribe streaming retry client using AWS credentials.
          */
-        TranscribeStreamingRetryClient client = new TranscribeStreamingRetryClient(getCredentials(), endpoint, region);
+        TranscribeStreamingRetryClient client = new TranscribeStreamingRetryClient(DefaultCredentialsProvider.create(), endpoint, region);
 
         StartStreamTranscriptionRequest request =  StartStreamTranscriptionRequest.builder()
-            .languageCode(LanguageCode.language.toString())
-            .mediaEncoding(encoding)
-            .mediaSampleRateHertz(sample rate)
+            .languageCode(LanguageCode.EN_US.toString())
+            .mediaEncoding(MediaEncoding.PCM)
+            .mediaSampleRateHertz(44100)
             .build();
         /**
          * Start real-time speech recognition. The Transcribe streaming java client uses the Reactive-streams
