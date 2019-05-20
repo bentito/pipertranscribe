@@ -35,7 +35,7 @@ import java.util.concurrent.ExecutionException;
 public class App {
     private static final String endpoint = "https://transcribe.us-west-2.amazonaws.com";
     private static final Region region = Region.of(Region.US_WEST_2.id());
-    public static void main(String args[]) throws URISyntaxException, ExecutionException, InterruptedException, LineUnavailableException, FileNotFoundException {
+    public static void main(String args[]) throws URISyntaxException, ExecutionException, InterruptedException, FileNotFoundException {
         /**
          * Create Transcribe streaming retry client using AWS credentials.
          */
