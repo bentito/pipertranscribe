@@ -33,12 +33,13 @@ import java.util.concurrent.ExecutionException;
  */
 
 public class App {
-    private static final String endpoint = "endpoint";
+    private static final String endpoint = "https://transcribe.us-west-2.amazonaws.com";
     private static final Region region = Region.of(Region.US_WEST_2.id());
     public static void main(String args[]) throws URISyntaxException, ExecutionException, InterruptedException, LineUnavailableException, FileNotFoundException {
         /**
          * Create Transcribe streaming retry client using AWS credentials.
          */
+//        AwsCredentialsProvider creds = StaticCredentialsProvider.create(AwsBasicCredentials.create(ACCESS_KEY, SECRET_KEY));
         TranscribeStreamingRetryClient client = new TranscribeStreamingRetryClient(DefaultCredentialsProvider.create(), endpoint, region);
 
         StartStreamTranscriptionRequest request =  StartStreamTranscriptionRequest.builder()
@@ -61,7 +62,7 @@ public class App {
              * For input from a microphone, use getStreamFromMic().
              * For input from a file, use getStreamFromFile().
              */
-            new AudioStreamPublisher(new FileInputStream(new File("FileName"))),
+            new AudioStreamPublisher(new FileInputStream(new File(args[0]))),
             /**
              * Object that defines the behavior on how to handle the stream
              */
