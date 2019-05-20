@@ -9,9 +9,7 @@
     <version>1.0-SNAPSHOT</version>
 
     <name>pipertranscribe</name>
-    <description>A simple pipertranscribe.</description>
-    <!-- FIXME change it to the project's website -->
-    <url>http://www.example.com</url>
+    <description>Stream pcm 16 fifo to AWS Transcribe needs piperpcm.c to be writing to the fifo.</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
